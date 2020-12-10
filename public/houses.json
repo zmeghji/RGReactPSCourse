@@ -1,0 +1,11 @@
+[
+    {
+        "id":1,
+        "address" : "123 easy street",
+        "country" : "Switzerland",
+        "description" : "Easy house",
+        "price" : 900000,
+        "photo" : 2079234
+
+    }
+]
