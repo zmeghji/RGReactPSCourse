@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './main-page.css';
 import Header from './header';
 import FeaturedHouse from './featured-house';
-
+import HouseFilter from './house-filter';
 class App extends Component{
 
   //could initialize state using constructor
@@ -27,6 +27,7 @@ class App extends Component{
     .then(allHouses => {
       this.allHouses = allHouses;
       this.determineFeaturedHouse();
+      this.determineUniqueCountries()
     })
   }
   determineFeaturedHouse = () => {
@@ -37,10 +38,18 @@ class App extends Component{
       this.setState({featuredHouse});
     }
   }
+  determineUniqueCountries = () =>{
+    const countries = this.allHouses
+      ? Array.from(new Set(this.allHouses.map(h => h.country)))
+      : [];
+      countries.unshift(null);
+      this.setState({countries});
+  }
   render(){
     return (
       <div className="container">
         <Header subtitle="Providing houses all over the world" />
+        <HouseFilter countries={this.state.countries} />
         <FeaturedHouse house={this.state.featuredHouse}/>
       </div>
     );
